@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DR Medical Center — Acesso ao Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-shell">
+
+  <!-- ── Painel esquerdo com a marca ── -->
+  <div class="auth-panel">
+
+    <div class="auth-brand">
+      <img src="img/logo.png" alt="DR Medical Center" style="display:block; height:150px; margin:0 auto 8px auto;">
+    </div>
+
+    <div class="auth-panel-body">
+      <div class="auth-role-pill patient">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Área do Paciente
+      </div>
+      <h2 class="auth-panel-h2">Sua saúde,<em class="green-em">sempre em mãos.</em></h2>
+      <p class="auth-panel-desc">Agende consultas com especialistas, acompanhe seu histórico e acesse seus resultados com total segurança.</p>
+    </div>
+
+  </div>
+
+  <!-- ── Painel direito com os formulários ── -->
+  <div class="auth-form-panel">
+    <div class="auth-form-box">
+
+      <!-- Botão voltar ao site -->
+      <button class="auth-back" id="btn-voltar">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar ao site
+      </button>
+
+      <!-- Mensagem de erro (lida da URL via JS) -->
+      <div id="msg-erro" class="callout callout-red form-mb" style="display:none;">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/></svg>
+        <div id="msg-erro-texto"></div>
+      </div>
+
+      <!-- Abas: Entrar / Criar conta -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="form-login">Entrar</button>
+        <button class="auth-tab" data-tab="form-register">Criar conta</button>
+      </div>
+
+      <!-- ── Formulário de Login ── -->
+      <div id="form-login" class="auth-form">
+        <div class="auth-heading">
+          <h3>Bem-vindo de volta</h3>
+          <p>Entre com suas credenciais para acessar o portal</p>
+        </div>
+
+        <form method="POST" action="login.php">
+          <input type="hidden" name="acao" value="login">
+
+          <div class="form-group form-mb">
+            <label class="field-label">E-mail</label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" name="email" placeholder="seu@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group form-mb">
+            <label class="field-label">Senha</label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" name="senha" placeholder="••••••••" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-block-green">Entrar no Portal</button>
+        </form>
+        <div class="forgot-link">
+          <a href="recuperar_senha.php?tipo=paciente">Esqueci minha senha</a>
+        </div>
+      </div>
+
+      <!-- ── Formulário de Cadastro ── -->
+      <div id="form-register" class="auth-form hidden">
+        <div class="auth-heading">
+          <h3>Criar conta</h3>
+          <p>Preencha seus dados para se cadastrar</p>
+        </div>
+
+        <form method="POST" action="login.php">
+          <input type="hidden" name="acao" value="cadastro">
+
+          <div class="form-grid form-mb">
+            <div class="form-group">
+              <label class="field-label">Nome completo *</label>
+              <input type="text" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div class="form-group">
+              <label class="field-label">CPF *</label>
+              <input type="text" name="cpf" placeholder="000.000.000-00" required>
+            </div>
+          </div>
+
+          <div class="form-group form-mb">
+            <label class="field-label">E-mail *</label>
+            <input type="email" name="email" placeholder="seu@email.com" required>
+          </div>
+
+          <div class="form-grid form-mb">
+            <div class="form-group">
+              <label class="field-label">Telefone</label>
+              <input type="tel" name="telefone" placeholder="(11) 99999-9999">
+            </div>
+            <div class="form-group">
+              <label class="field-label">Data de Nascimento</label>
+              <input type="date" name="nascimento">
+            </div>
+          </div>
+
+          <div class="form-group form-mb">
+            <label class="field-label">Senha *</label>
+            <input type="password" name="senha" placeholder="Mínimo 6 caracteres" required>
+          </div>
+
+          <button type="submit" class="btn-block-green">Criar Conta</button>
+        </form>
+      </div>
+
+      <!-- Link discreto para acesso médico -->
+      <div class="doctor-subtle-link">
+        <a href="medico.php">Acesso para profissionais de saúde</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Troca entre as abas Entrar / Criar conta
+  document.querySelectorAll('.auth-tab[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.auth-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.auth-form').forEach(f => f.classList.add('hidden'));
+      document.getElementById(btn.dataset.tab).classList.remove('hidden');
+    });
+  });
+
+  // Botão voltar ao site
+  document.getElementById('btn-voltar').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // Lê mensagens de erro da URL
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('erro')) {
+    const divErro = document.getElementById('msg-erro');
+    const txtErro = document.getElementById('msg-erro-texto');
+    txtErro.textContent = params.get('erro');
+    divErro.style.display = 'flex';
+  }
+  if (params.get('tab') === 'register') {
+    document.querySelectorAll('.auth-tab').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-tab="form-register"]').classList.add('active');
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.add('hidden'));
+    document.getElementById('form-register').classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
