@@ -1,0 +1,5 @@
+[phases.setup]
+nixPkgs = ["php", "apacheHttpd"]
+
+[start]
+cmd = "apache2 -D FOREGROUND"
