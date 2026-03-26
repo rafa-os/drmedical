@@ -1,18 +1,5 @@
 [phases.setup]
-nixPkgs = ["php81", "apacheHttpd"]
-
-[phases.build]
-cmds = [
-  "mkdir -p /etc/apache2",
-  "echo 'ServerName localhost' > /etc/apache2/httpd.conf",
-  "echo 'DocumentRoot /app' >> /etc/apache2/httpd.conf",
-  "echo '<Directory /app>' >> /etc/apache2/httpd.conf",
-  "echo '  AllowOverride All' >> /etc/apache2/httpd.conf",
-  "echo '  Require all granted' >> /etc/apache2/httpd.conf",
-  "echo '</Directory>' >> /etc/apache2/httpd.conf",
-  "echo 'LoadModule php_module modules/libphp.so' >> /etc/apache2/httpd.conf",
-  "echo 'AddHandler php-script .php' >> /etc/apache2/httpd.conf"
-]
+nixPkgs = ["php81", "php81Extensions.mysqli", "php81Extensions.pdo", "php81Extensions.pdo_mysql"]
 
 [start]
-cmd = "httpd -D FOREGROUND -f /etc/apache2/httpd.conf"
+cmd = "php -S 0.0.0.0:$PORT"
