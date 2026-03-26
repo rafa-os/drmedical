@@ -1244,3 +1244,28 @@ body.landing { background: #0F1C2D; }
   flex-shrink: 0;
   border: 3px solid var(--rule-light);
 }
+
+    /* ── Responsividade mobile ─────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Esconde a sidebar e usa navegação em baixo */
+  .app-sidebar { display: none; }
+  .main-area   { margin-left: 0; }
+
+  /* Tabelas roláveis horizontalmente */
+  .table-wrap  { overflow-x: auto; }
+
+  /* Formulários em coluna única */
+  .form-grid   { grid-template-columns: 1fr; }
+
+  /* Cards de médicos em coluna única */
+  .doctors-grid { grid-template-columns: 1fr; }
+
+  /* Auth shell empilhado */
+  .auth-shell  { flex-direction: column; }
+  .auth-panel  { display: none; }
+  .auth-form-panel { width: 100%; padding: 24px 16px; }
+
+  /* Painel de horários */
+  .booking-panel { width: 100%; }
+}
