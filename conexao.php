@@ -4,10 +4,10 @@
 //  Configuração para XAMPP (ambiente local)
 // ============================================================
 
-$host  = 'localhost';
+$host  = 'mysql.railway.internal';
 $user  = 'root';
-$pass  = '';
-$banco = 'drmedical';
+$pass  = 'kMYvxyMjidwogcZXzQYlEHwEsugJkTHW';
+$banco = 'railway';
 
 $conn = mysqli_connect($host, $user, $pass, $banco);
 
