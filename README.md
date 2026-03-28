@@ -142,4 +142,4 @@ O banco `drmedical` é composto por 5 tabelas:
 - **Daniel Silva dos Santos**
 - **Rafael Oliveira de Souza**
 
-Projeto desenvolvido para a disciplina de Desenvolvimento de Sistemas — SENAI "Roberto Simonsen", 2026.
+Projeto desenvolvido para a disciplina de Programação Back-end II — SENAI "Roberto Simonsen", 2026.
